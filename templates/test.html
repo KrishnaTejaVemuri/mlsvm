@@ -1,0 +1,20 @@
+{% load static %}
+<html>
+    <head>
+        <title>ML-Cloud</title>
+    </head>
+    <body>
+        {% ifequal request.method 'POST' %}
+        Uploaded Image:
+        <image src="/{{test_image.url}}" style="width:50px" />
+        <br>
+        Detected Image: {{detected_image}}
+        {% else %}
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit">
+        </form>
+        {% endifequal %}
+    </body>
+</html>
